@@ -5,10 +5,11 @@ import { AlertService } from '../../../services/alert/alert.service';
 import { InvoiceService } from '../../../services/invoice/invoice.service';
 import { ReadInvoiceDTO } from '../../../models/invoice/read-invoice-dto';
 import { errorContext } from 'rxjs/internal/util/errorContext';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-manage-invoice',
-  imports: [RouterLink, CommonModule],
+  imports: [RouterLink, CommonModule, FormsModule],
   templateUrl: './manage-invoice.component.html',
   styleUrl: './manage-invoice.component.css'
 })
@@ -17,6 +18,7 @@ export class ManageInvoiceComponent implements OnInit {
   CurrentPage: number = 0;
   PgSize: number = 10;
   InvoiceList!: ReadInvoiceDTO[];
+  SearchText!: string;
   constructor(
     private alertServ: AlertService,
     private invoiceServ: InvoiceService
@@ -81,5 +83,40 @@ export class ManageInvoiceComponent implements OnInit {
     if (this.CurrentPage < this.TotalPages)
       this.CurrentPage++;
     this.initializePagination();
+  }
+  FilterSearch() {
+    if (this.SearchText) {
+      //Filter Data
+      this.alertServ.loading();
+      this.invoiceServ.GetTotalFilteredPages(this.PgSize, this.SearchText).subscribe({
+        next: (res) => {
+          if (res.data) {
+            this.TotalPages = res.data;
+            this.CurrentPage = 1;
+            this.alertServ.close();
+            this.alertServ.loading();
+            this.invoiceServ.GetAllFilteredPaginatedAsync(this.PgSize, this.CurrentPage, this.SearchText).subscribe({
+              next: (res) => {
+                if (res.data) {
+                  this.InvoiceList = res.data;
+                }
+                this.alertServ.close();
+              },
+              error: (err) => {
+                this.alertServ.close();
+                this.alertServ.error(err.message, 'Server Error');
+              }
+            })
+          };
+          this.alertServ.close();
+        },
+        error: (err) => {
+          this.alertServ.close();
+          this.alertServ.error(err.message, 'Server Error');
+        }
+      })
+    } else {
+      this.initializeList();
+    }
   }
 }

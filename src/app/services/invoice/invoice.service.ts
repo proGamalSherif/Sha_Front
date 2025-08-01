@@ -20,11 +20,17 @@ export class InvoiceService {
     return this.httpClient.get<ResponseWrapper<ReadInvoiceDTO>>(`${this.apiUrl}/Invoice/${id}`);
   }
   GetTotalPages(pgSize: number): Observable<ResponseWrapper<number>> {
-      return this.httpClient.get<ResponseWrapper<number>>(`${this.apiUrl}/Invoice/GetTotalPages/${pgSize}`);
-    }
-    GetAllPaginatedAsync(pgSize: number, pgNumber: number): Observable<ResponseWrapper<ReadInvoiceDTO[]>> {
-      return this.httpClient.get<ResponseWrapper<ReadInvoiceDTO[]>>(`${this.apiUrl}/Invoice/GetAllPaginatedAsync/${pgSize}/${pgNumber}`);
-    }
+    return this.httpClient.get<ResponseWrapper<number>>(`${this.apiUrl}/Invoice/GetTotalPages/${pgSize}`);
+  }
+  GetAllPaginatedAsync(pgSize: number, pgNumber: number): Observable<ResponseWrapper<ReadInvoiceDTO[]>> {
+    return this.httpClient.get<ResponseWrapper<ReadInvoiceDTO[]>>(`${this.apiUrl}/Invoice/GetAllPaginatedAsync/${pgSize}/${pgNumber}`);
+  }
+  GetTotalFilteredPages(pgSize: number,filterText:string): Observable<ResponseWrapper<number>> {
+    return this.httpClient.get<ResponseWrapper<number>>(`${this.apiUrl}/Invoice/GetTotalFilteredPages/${pgSize}/${filterText}`);
+  }
+  GetAllFilteredPaginatedAsync(pgSize: number, pgNumber: number,filterText:string): Observable<ResponseWrapper<ReadInvoiceDTO[]>> {
+    return this.httpClient.get<ResponseWrapper<ReadInvoiceDTO[]>>(`${this.apiUrl}/Invoice/GetAllFilteredPaginatedAsync/${pgSize}/${pgNumber}/${filterText}`);
+  }
   AddAsync(entity: InsertInvoiceDTO): Observable<ResponseWrapper<ReadInvoiceDTO>> {
     return this.httpClient.post<ResponseWrapper<ReadInvoiceDTO>>(`${this.apiUrl}/Invoice`, entity);
   }
