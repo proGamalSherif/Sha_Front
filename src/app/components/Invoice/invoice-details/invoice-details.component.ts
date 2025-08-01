@@ -36,13 +36,14 @@ export class InvoiceDetailsComponent implements OnInit {
     })
     this.initializeCashier();
     this.initializeForm();
-    this.initializeEntity();
+
   }
   private initializeCashier() {
     this.cashierServ.GetAllAsync().subscribe({
       next: (res) => {
         if (res.data) {
           this.CashierList = res.data;
+          this.initializeEntity();
         }
       }
     })
