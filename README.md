@@ -2,7 +2,7 @@
 # 🧾 Account System Frontend
 
 > 🖼️ Angular frontend for secure hash generation  
-> **Live Demo**: _[https://sha-front.vercel.app/Dashboard/ManageCashiers]_
+> **Live Demo**: _[https://sha-front.vercel.app]_
 
 ## ℹ️ Overview
 Account System UI is the UI interface for users to input text or files and receive a secure SHA hash generated from the backend service.
