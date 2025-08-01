@@ -19,6 +19,12 @@ export class InvoiceService {
   GetByIdAsync(id: number): Observable<ResponseWrapper<ReadInvoiceDTO>> {
     return this.httpClient.get<ResponseWrapper<ReadInvoiceDTO>>(`${this.apiUrl}/Invoice/${id}`);
   }
+  GetTotalPages(pgSize: number): Observable<ResponseWrapper<number>> {
+      return this.httpClient.get<ResponseWrapper<number>>(`${this.apiUrl}/Invoice/GetTotalPages/${pgSize}`);
+    }
+    GetAllPaginatedAsync(pgSize: number, pgNumber: number): Observable<ResponseWrapper<ReadInvoiceDTO[]>> {
+      return this.httpClient.get<ResponseWrapper<ReadInvoiceDTO[]>>(`${this.apiUrl}/Invoice/GetAllPaginatedAsync/${pgSize}/${pgNumber}`);
+    }
   AddAsync(entity: InsertInvoiceDTO): Observable<ResponseWrapper<ReadInvoiceDTO>> {
     return this.httpClient.post<ResponseWrapper<ReadInvoiceDTO>>(`${this.apiUrl}/Invoice`, entity);
   }

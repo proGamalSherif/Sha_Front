@@ -67,21 +67,23 @@ export class InvoiceDetailsComponent implements OnInit {
                 customerName: this.InvoiceEntity.customerName,
                 cashierID: this.InvoiceEntity.cashierID,
               });
-              let cashierEntity = this.CashierList.find(c => c.id == this.InvoiceEntity.cashierID)
-              if (cashierEntity) {
-                let newBranch: ReadBranchDTO = {
-                  id: cashierEntity?.branchID ?? 0,
-                  branchName: cashierEntity?.branchName ?? '',
+              if (this.InvoiceEntity) {
+                let cashierEntity = this.CashierList.find(c => c.id == this.InvoiceEntity.cashierID)
+                if (cashierEntity) {
+                  let newBranch: ReadBranchDTO = {
+                    id: cashierEntity?.branchID ?? 0,
+                    branchName: cashierEntity?.branchName ?? '',
+                  }
+                  this.BranchList = [];
+                  this.BranchList.push(newBranch)
+                  this.InvoiceForm.patchValue({
+                    branchID: this.InvoiceEntity.branchID
+                  })
                 }
-                this.BranchList = [];
-                this.BranchList.push(newBranch)
-                this.InvoiceForm.patchValue({
-                  branchID: this.InvoiceEntity.branchID
+                this.InvoiceEntity.invoiceDetails.forEach((item) => {
+                  this.addItemToArray(item);
                 })
               }
-              this.InvoiceEntity.invoiceDetails.forEach((item) => {
-                this.addItemToArray(item);
-              })
             }
             this.alertServ.close();
           },
