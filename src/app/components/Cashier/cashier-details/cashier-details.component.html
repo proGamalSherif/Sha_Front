@@ -1,0 +1,57 @@
+<div class="container border rounded shadow-sm">
+  <form [formGroup]="CashierForm" (submit)="submitForm()">
+    <div class="row mb-3">
+      <div class="col-6">
+        <div class="row">
+          <div class="col-12">
+            <div class="flex-column">
+              <p class="opacity-75 text-secondary text-muted fw-bold m-0 p-0 mb-2">
+                Cashier Name
+              </p>
+              <input type="text" class="form-control" formControlName="cashierName">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-6">
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+            <div class="flex-column">
+              <p class="opacity-75 text-secondary text-muted fw-bold m-0 p-0 mb-2">
+                City Name
+              </p>
+              <select class="form-select" (change)="cityChanged($event)" formControlName="cityID">
+                <option [value]="null"></option>
+                <option *ngFor="let city of CityList" [value]="city.id">{{city.cityName}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+            <div class="flex-column">
+              <p class="opacity-75 text-secondary text-muted fw-bold m-0 p-0 mb-2">
+                City Name
+              </p>
+              <select class="form-select" formControlName="branchID">
+                <option *ngFor="let branch of BranchList" [value]="branch.id">{{branch.branchName}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mb-3 d-flex justify-content-end">
+      <div class="col-lg-3 col-md-5 col-sm-12 col-12">
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+            <button class="btn btn-primary w-100" type="submit">Save Changes</button>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+            <button class="btn btn-dark w-100" type="button" routerLink="Dashboard/ManageCashiers">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

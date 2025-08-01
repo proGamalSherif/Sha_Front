@@ -1,0 +1,80 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 border-bottom mb-3 p-0">
+      <div class="row justify-content-between align-items-end m-0">
+        <div class="col-md-5 mb-2">
+          <p class="text-muted fw-bold p-0 m-0">Customer Name</p>
+          <div class="row">
+            <div class="col-10 p-0">
+              <input type="text" class="form-control">
+            </div>
+            <div class="col-2 p-0 ps-2">
+              <button class="btn btn-outline-dark w-100 h-100">
+                <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2 mb-2 d-flex align-items-center">
+          <button class="btn btn-primary w-100" routerLink="/Dashboard/InvoiceDetails/0">Create Invoice</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 border-bottom mb-2" style="height: 74vh; overflow-y: auto;">
+      <table class="table table-light table-hover">
+        <thead>
+          <tr>
+            <th class="text-center" style="width: 9%;">Id</th>
+            <th class="text-center" style="width: 10%;">Date</th>
+            <th class="text-center" style="width: 34%;">Customer</th>
+            <th class="text-center" style="width: 34%;">Branch</th>
+            <th class="text-center" style="width: 13%;">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let invoice of InvoiceList">
+            <td class="text-center">{{invoice.id}}</td>
+            <td class="text-center">{{invoice.invoicedate | date}}</td>
+            <td class="text-center">{{invoice.customerName}}</td>
+            <td class="text-center">{{invoice.branchName}}</td>
+            <td class="text-center">
+              <div class="row justify-content-center">
+                <div class="col-auto p-1">
+                  <button class="btn btn-danger" (click)="confirmDelete(invoice.id)">Delete</button>
+                </div>
+                <div class="col-auto p-1">
+                  <button class="btn btn-success"
+                    [routerLink]="['/Dashboard/InvoiceDetails', invoice.id]">Update</button>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="d-flex justify-content-end">
+      <div class="col-4">
+        <div class="row">
+          <div class="col-3 m-0 p-0" ps-2>
+            <button class="btn btn-outline-secondary w-100" (click)="prevPage()"
+              [disabled]="CurrentPage <= 1">Prev</button>
+          </div>
+          <div class="col-3 m-0 p-0 ps-2">
+            <input type="number" class="form-control text-center" disabled [value]="CurrentPage ">
+          </div>
+          <div class="col-3 m-0 p-0 ps-2">
+            <input type="number" class="form-control text-center" disabled [value]="TotalPages">
+          </div>
+          <div class="col-3 m-0 p-0 ps-2">
+            <button class="btn btn-outline-secondary w-100" (click)="nextPage()"
+              [disabled]="CurrentPage == TotalPages">Next</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
