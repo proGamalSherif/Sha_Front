@@ -1,59 +1,40 @@
-# AccountSystemFrontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.15.
+# 🧾 Account System Frontend
 
-## Development server
+> 🖼️ Angular frontend for secure hash generation  
+> **Live Demo**: _[Add link here]_
 
-To start a local development server, run:
+## ℹ️ Overview
+Account System UI is the UI interface for users to input text or files and receive a secure SHA hash generated from the backend service.
 
+## ✨ Key Features
+- Text or file input interface
+- Button to trigger hash generation
+- Display results in real-time
+- Download hash result as a text or JSON file
+- Responsive and fast user experience
+
+## 🛠 Technologies Used
+- **Framework**: Angular 19
+- **Languages**: TypeScript, HTML, CSS
+- **UI Library**: Bootstrap
+- **HTTP Client**: Angular HttpClient
+- **Deployment**: GitHub Pages / Vercel
+
+## ⚙️ Getting Started
 ```bash
+git clone https://github.com/proGamalSherif/Sha_Front.git
+cd Sha_Front
+npm install
 ng serve
 ```
+Then open your browser at `http://localhost:4200/`.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## 🌐 Usage Flow
+1. Input a message or upload a file
+2. Click **Generate Hash**
+3. View the resulting hash below the form
+4. Copy or download the result
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## 🔄 Integration
+Make sure the backend service (`Sha_Task`) is running on a reachable port.
