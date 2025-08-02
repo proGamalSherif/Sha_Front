@@ -18,6 +18,6 @@ export class BranchService {
     return this.httpClient.get<ResponseWrapper<ReadBranchDTO>>(`${this.apiUrl}/Branch/${id}`);
   }
   GetAllByCityId(id: number): Observable<ResponseWrapper<ReadBranchDTO[]>> {
-    return this.httpClient.get<ResponseWrapper<ReadBranchDTO[]>>(`${this.apiUrl}/Branch/GetAllByCityId/${id}`);
+    return this.httpClient.get<ResponseWrapper<ReadBranchDTO[]>>(`${this.apiUrl}/Branch/ByCity/${id}`);
   }
 }

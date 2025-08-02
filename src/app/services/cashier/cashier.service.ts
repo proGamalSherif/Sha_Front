@@ -20,16 +20,16 @@ export class CashierService {
     return this.httpClient.get<ResponseWrapper<ReadCashierDTO>>(`${this.apiUrl}/Cashier/${id}`);
   }
   GetTotalPages(pgSize: number): Observable<ResponseWrapper<number>> {
-    return this.httpClient.get<ResponseWrapper<number>>(`${this.apiUrl}/Cashier/GetTotalPages/${pgSize}`);
+    return this.httpClient.get<ResponseWrapper<number>>(`${this.apiUrl}/Cashier/TPages/${pgSize}`);
   }
   GetAllPaginatedAsync(pgSize: number, pgNumber: number): Observable<ResponseWrapper<ReadCashierDTO[]>> {
-    return this.httpClient.get<ResponseWrapper<ReadCashierDTO[]>>(`${this.apiUrl}/Cashier/GetAllPaginatedAsync/${pgSize}/${pgNumber}`);
+    return this.httpClient.get<ResponseWrapper<ReadCashierDTO[]>>(`${this.apiUrl}/Cashier/Pagination/${pgSize}/${pgNumber}`);
   }
   GetTotalFilteredPages(pgSize: number,filterText:string): Observable<ResponseWrapper<number>> {
-    return this.httpClient.get<ResponseWrapper<number>>(`${this.apiUrl}/Cashier/GetTotalFilteredPages/${pgSize}/${filterText}`);
+    return this.httpClient.get<ResponseWrapper<number>>(`${this.apiUrl}/Cashier/TPagPages/${pgSize}/${filterText}`);
   }
   GetFilteredPaginatedAsync(pgSize: number, pgNumber: number,filterText:string): Observable<ResponseWrapper<ReadCashierDTO[]>> {
-    return this.httpClient.get<ResponseWrapper<ReadCashierDTO[]>>(`${this.apiUrl}/Cashier/GetFilteredPaginatedAsync/${pgSize}/${pgNumber}/${filterText}`);
+    return this.httpClient.get<ResponseWrapper<ReadCashierDTO[]>>(`${this.apiUrl}/Cashier/PagFilter/${pgSize}/${pgNumber}/${filterText}`);
   }
   AddAsync(entity: InsertCashierDTO): Observable<ResponseWrapper<ReadCashierDTO>> {
     return this.httpClient.post<ResponseWrapper<ReadCashierDTO>>(`${this.apiUrl}/Cashier`, entity);
