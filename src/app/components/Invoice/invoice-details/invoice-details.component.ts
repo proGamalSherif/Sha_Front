@@ -3,7 +3,7 @@ import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } fr
 import { ReadInvoiceDTO } from '../../../models/invoice/read-invoice-dto';
 import { AlertService } from '../../../services/alert/alert.service';
 import { InvoiceService } from '../../../services/invoice/invoice.service';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ReadCashierDTO } from '../../../models/cashier/read-cashier-dto';
 import { CashierService } from '../../../services/cashier/cashier.service';
 import { CommonModule } from '@angular/common';
@@ -28,7 +28,8 @@ export class InvoiceDetailsComponent implements OnInit {
     private invoiceServ: InvoiceService,
     private fb: FormBuilder,
     private route: ActivatedRoute,
-    private cashierServ: CashierService
+    private cashierServ: CashierService,
+    private router:Router
   ) { }
   ngOnInit() {
     this.route.paramMap.subscribe((value) => {
@@ -179,6 +180,7 @@ export class InvoiceDetailsComponent implements OnInit {
       next: (res) => {
         this.alertServ.close();
         this.alertServ.success(res.message, 'Server Success');
+        this.navigateToHome()
       },
       error: (err) => {
         this.alertServ.close();
@@ -209,11 +211,15 @@ export class InvoiceDetailsComponent implements OnInit {
       next: (res) => {
         this.alertServ.close();
         this.alertServ.success(res.message, 'Server Success');
+        this.navigateToHome();
       },
       error: (err) => {
         this.alertServ.close();
         this.alertServ.error(err.message, 'Server Error');
       }
     })
+  }
+  private navigateToHome(){
+    this.router.navigate(['/Dashboard/ManageInvoices'])
   }
 }

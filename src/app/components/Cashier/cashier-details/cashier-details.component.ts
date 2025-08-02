@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 import { ReadBranchDTO } from '../../../models/branch/read-branch-dto';
 import { errorContext } from 'rxjs/internal/util/errorContext';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ReadCashierDTO } from '../../../models/cashier/read-cashier-dto';
 import { InsertCashierDTO } from '../../../models/cashier/insert-cashier-dto';
 import { UpdateCashierDTO } from '../../../models/cashier/update-cashier-dto';
@@ -31,7 +31,8 @@ export class CashierDetailsComponent implements OnInit {
     private cashierServ: CashierService,
     private alertServ: AlertService,
     private fb: FormBuilder,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router:Router
   ) {
     this.route.paramMap.subscribe((value) => {
       this.CashierId = Number(value.get('id'));
@@ -136,6 +137,7 @@ export class CashierDetailsComponent implements OnInit {
           next:(res)=>{
             this.alertServ.close();
             this.alertServ.success(res.message,'Server Success')
+            this.router.navigate(['/Dashboard/ManageCashiers'])
           },
           error:(err)=>{
             this.alertServ.close();
@@ -152,6 +154,7 @@ export class CashierDetailsComponent implements OnInit {
           next:(res)=>{
             this.alertServ.close();
             this.alertServ.success(res.message,'Server Success')
+            this.router.navigate(['/Dashboard/ManageCashiers'])
           },
           error:(err)=>{
             this.alertServ.close();
